@@ -3,7 +3,7 @@ import logo from "../image/logo.png";
 
 function Fotter() {
   return (
-    <footer className="bg-[#222222] pt-12 pb-20 ">
+    <footer className="bg-[#222222] pt-12 pb-20 px-8 ">
       <div className="lg:max-w-[1280px] md:max-w-[696px] max-w-[343px] mx-auto">
         <form className=" flex items-center justify-between flex-col md:flex-row text-white md:items-end px-3.5 xl:px-0">
           <div>
