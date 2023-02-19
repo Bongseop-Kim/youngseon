@@ -62,6 +62,7 @@ function QuoteContact() {
         ...radioData,
         ...form,
         date: dateString,
+        designFile: designFile,
       });
       console.log(response);
     } catch (error) {
