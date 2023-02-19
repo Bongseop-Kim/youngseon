@@ -38,7 +38,8 @@ function Design() {
     <div>
       {modal.isOpen && (
         <div className="z-10 absolute min-h-screen w-full flex justify-center items-center">
-          <div className="z-20 w-1/3 container p-5 rounded-lg">
+          <div className="z-20 w-1/3 container p-5 bg-white rounded-lg">
+            <p>{modal.message}</p>
             <button onClick={() => closeModal()} className="bg-blue-600 w-full rounded-sm text-white p-2 outline-none">
               ok
             </button>
