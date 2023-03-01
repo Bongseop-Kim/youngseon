@@ -1,46 +1,27 @@
-# Getting Started with Create React App
+![waving](https://capsule-render.vercel.app/api?type=waving&height=250&text=Bong's&nbsp;&nbsp;&nbsp;Project&fontAlign=30&fontAlignY=40&color=gradient)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+📌 영선산업
+1. 프로젝트 Rebuild
 
-## Available Scripts
+- 영선산업 프로젝트 Rebuild<br>
+- 배포 준비중...<br><br><br>
 
-In the project directory, you can run:
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+2. 프로젝트 정리
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Front End : ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)&nbsp;&nbsp;&nbsp;![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)&nbsp;&nbsp;&nbsp;<img src="https://img.shields.io/badge/Redux-764ABC?style=for-the-badge&logo=Redux&logoColor=purple"><br>
+- Back End : <img src="https://img.shields.io/badge/node.js-339933?style=for-the-badge&logo=Node.js&logoColor=white">&nbsp;&nbsp;&nbsp;<img src="https://img.shields.io/badge/mongoDB-47A248?style=for-the-badge&logo=MongoDB&logoColor=white"><br>
+- 컴파일 방법, 사용 환경, 브라우저 서포트, 개발스택, 구현 목록(명세)<br>
+- 리빌드 목록<br>
+  ⌞Type script 적용<br>
+  ⌞올바른 useEffect, useMemo 사용 : [해당 내용 블로그 바로가기](https://velog.io/@berlin0427/UseEffect-UseMemo-UseCallback)<br> 
+  ⌞Redux Toolkit 사용 : [해당 내용 블로그 바로가기](https://velog.io/@berlin0427/Redux-%EC%A0%81%EC%9A%A9)<br>
+  ⌞Nodejs + Mongoose 사용<br>
 
-### `npm test`
+리빌드 진행시 어려웠던 부분
+1. react konva 라이브러리 type 에러, Dom 요소 type 에러
+2. redux 적용 시, react konva 라이브러리 구조 이해, 내가 짠 코드 다시 이해
+3. node 서버 백엔드 배포 문제...
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
