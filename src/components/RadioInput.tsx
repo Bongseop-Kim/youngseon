@@ -4,7 +4,7 @@ interface ArgType {
   label: string;
   value: string;
   checked: string | undefined;
-  setter: any;
+  setter: React.Dispatch<React.SetStateAction<string>>;
 }
 
 function RadioInput({ label, value, checked, setter }: ArgType) {

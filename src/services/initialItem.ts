@@ -67,6 +67,7 @@ export const initialSlice = createSlice({
     },
     dragend: (state, action) => {
       state.designs[0].positions = action.payload;
+      //isDragging false와 함께 설정된 x,y의 좌표도 갱신
     },
     change: (state, action) => {
       state.designs[0].positions = action.payload;

@@ -1,23 +1,26 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useState } from "react";
 import Banner from "../../components/Banner";
 import contactBg from "../../image/contactBg.png";
 import RadioInput from "../../components/RadioInput";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import FormInput from "../../components/FormInput";
 
 function QuoteContact() {
   const navigate = useNavigate();
+  //string input 데이터
   const [form, setForm] = useState({
-    name: "",
-    company: "",
-    phone: "",
-    email: "",
+    이름: "",
+    회사명: "",
+    연락처: "",
+    이메일: "",
     accountNumber: "",
-    request: "",
+    요청사항: "",
   });
 
-  const { name, company, phone, email, accountNumber, request } = form;
+  //구조분해 할당
+  const { 이름, 회사명, 연락처, 이메일, accountNumber, 요청사항 } = form;
 
   const onChange = (e: any) => {
     const { name, value } = e.target;
@@ -27,20 +30,21 @@ function QuoteContact() {
     });
   };
 
-  const [tie, setTie] = React.useState();
-  const [fabric, setFabric] = React.useState();
-  const [design, setDesign] = React.useState();
-  const [label, setLabel] = React.useState();
-  const [box, setBox] = React.useState();
-  const [account, setAccount] = React.useState();
+  //radio 체크 데이터
+  const [tie, setTie] = useState("");
+  const [fabric, setFabric] = useState("");
+  const [design, setDesign] = useState("");
+  const [label, setLabel] = useState("");
+  const [box, setBox] = useState("");
+  const [account, setAccount] = useState("");
 
-  const fileInput = React.useRef<any>(null);
+  const fileInput = useRef<any>(null);
   const [designFile, setDesignFile] = useState();
 
-  const handleButtonClick = (e: any) => {
+  const imageUploadButton = (e: any) => {
     fileInput.current.click();
   };
-  const handleChange = (e: any) => {
+  const imageUpload = (e: any) => {
     setDesignFile(e.target.files[0]);
   };
 
@@ -52,7 +56,7 @@ function QuoteContact() {
   var hours = today.getHours();
   var minuutes = today.getMinutes();
   var dateString = year + "-" + month + "-" + day + "-" + hours + "-" + minuutes;
-  console.log(radioData);
+
   const onSubmit = async () => {
     navigate("/");
     try {
@@ -84,7 +88,7 @@ function QuoteContact() {
         />
         {/* 본문 시작 */}
         <div className=" pt-10 ms:pt-16 md:pb-48 sm:pb-32 pb-16 px-3.5 xl:px-0 sm:px-6 lg:max-w-7xl lg:px-8">
-          <div className="bg-gray-100 py-5 px-6 md:px-16 mb-8 rounded-md">
+          <section className="bg-gray-100 py-5 px-6 md:px-16 mb-8 rounded-md">
             <p className="font-semibold mb-2">
               정보 작성 및 이미지 첨부 후 문의하기 버튼을 누르시면 견적서가 발송됩니다.
             </p>
@@ -99,64 +103,36 @@ function QuoteContact() {
               </a>
               로 보내주세요.
             </p>
-          </div>
+          </section>
           <div className="text-[90%] sm:text-base">
-            <div className="flex py-3">
-              <div className="font-semibold bg-gray-100 w-2/6 sm:w-44 flex justify-center rounded-md leading-[3.75rem] mr-3 sm:mr-7 shrink-0">
-                이름
-              </div>
-              <form>
-                <input
-                  className="border border-inpgray py-2.5 pl-3 rounded-md sm:w-80 focus:ring-1 focus:outline-none focus:border-blue focus:ring-blue h-full text-subgray w-full"
-                  value={name}
-                  placeholder="이름을 입력해주세요."
-                  name="name"
-                  onChange={onChange}
-                />
-              </form>
-            </div>
-            <div className="flex py-4">
-              <div className="font-semibold bg-gray-100 w-2/6 sm:w-44 flex justify-center leading-[3.75rem] rounded-md mr-3 sm:mr-7 shrink-0">
-                회사명
-              </div>
-              <form>
-                <input
-                  className="border border-inpgray py-2.5 pl-3 rounded-md sm:w-80 focus:ring-1 focus:outline-none focus:border-blue focus:ring-blue h-full text-subgray w-full"
-                  value={company}
-                  placeholder="회사명을 입력해주세요."
-                  name="company"
-                  onChange={onChange}
-                />
-              </form>
-            </div>
-            <div className="flex py-4">
-              <div className="font-semibold bg-gray-100 w-2/6 sm:w-44 flex justify-center leading-[3.75rem] rounded-md mr-3 sm:mr-7 shrink-0">
-                연락처
-              </div>
-              <form>
-                <input
-                  className="border border-inpgray py-2.5 pl-3 rounded-md sm:w-80 focus:ring-1 focus:outline-none focus:border-blue focus:ring-blue h-full text-subgray w-full"
-                  value={phone}
-                  placeholder="연락처를 입력해주세요."
-                  name="phone"
-                  onChange={onChange}
-                />
-              </form>
-            </div>
-            <div className="flex py-4">
-              <div className="font-semibold bg-gray-100 w-2/6 sm:w-44 flex justify-center leading-[3.75rem] rounded-md mr-3 sm:mr-7 shrink-0">
-                이메일
-              </div>
-              <form>
-                <input
-                  className="border border-inpgray py-2.5 pl-3 rounded-md sm:w-80 focus:ring-1 focus:outline-none focus:border-blue focus:ring-blue h-full text-subgray w-full"
-                  value={email}
-                  placeholder="이메일을 입력해주세요."
-                  name="email"
-                  onChange={onChange}
-                />
-              </form>
-            </div>
+            <FormInput
+              value={이름}
+              onChange={onchange}
+              title={"이름"}
+              textArea={false}
+              placeholder={"이름을 입력해주세요."}
+            />
+            <FormInput
+              value={회사명}
+              onChange={onchange}
+              title={"회사명"}
+              textArea={false}
+              placeholder={"회사명을 입력해주세요."}
+            />
+            <FormInput
+              value={연락처}
+              onChange={onchange}
+              title={"연락처"}
+              textArea={false}
+              placeholder={"연락처를 입력해주세요."}
+            />
+            <FormInput
+              value={이메일}
+              onChange={onchange}
+              title={"이메일"}
+              textArea={false}
+              placeholder={"이메일을 입력해주세요."}
+            />
             <form onSubmit={onSubmit}>
               <div className="md:flex items-center py-4">
                 <label className="md:w-44 w-full font-semibold bg-gray-100 leading-[3.75rem] rounded-md block text-center">
@@ -189,14 +165,14 @@ function QuoteContact() {
                   <React.Fragment>
                     <div
                       className="border border-inpgray py-2 rounded-md col-span-3 md:col-end-auto flex items-center cursor-pointer"
-                      onClick={handleButtonClick}
+                      onClick={imageUploadButton}
                     >
                       <input
                         className="px-2 py-1 rounded-md mx-1 "
                         type="file"
                         accept="image/*"
                         ref={fileInput}
-                        onChange={handleChange}
+                        onChange={imageUpload}
                       />
                     </div>
                   </React.Fragment>
@@ -232,30 +208,25 @@ function QuoteContact() {
                   <RadioInput label="500개" value="500개" checked={account} setter={setAccount} />
                   <div className="flex col-span-4 md:col-span-2 items-center justify-between">
                     <RadioInput label="기타" value="기타" checked={account} setter={setAccount} />
-                    <input
-                      className="py-2.5 pl-3 rounded-md ml-2 border border-inpgray focus:ring-1 focus:outline-none focus:border-blue focus:ring-blue h-full w-full sm:w-3/4 "
-                      value={accountNumber}
-                      placeholder="수량을 입력해주세요."
-                      name="accountNumber"
-                      onChange={onChange}
-                    />
+                    {account === "기타" ? (
+                      <input
+                        className="py-2.5 pl-3 rounded-md ml-2 border border-inpgray focus:ring-1 focus:outline-none focus:border-blue focus:ring-blue h-full w-full sm:w-3/4 "
+                        value={accountNumber}
+                        placeholder="수량을 입력해주세요."
+                        name="accountNumber"
+                        onChange={onChange}
+                      />
+                    ) : null}
                   </div>
                 </div>
               </div>
-              <div className="md:flex py-4 w-full">
-                <label className="md:w-44 w-full font-semibold bg-gray-100 leading-[3.75rem] h-min rounded-md block text-center">
-                  요청사항
-                </label>
-                <div className="md:pl-4 flex-1 w-full mt-4 md:mt-0">
-                  <textarea
-                    className="py-2.5 pl-3 rounded-md w-full h-[7rem] border border-inpgray focus:ring-1 focus:outline-none focus:border-blue focus:ring-blue text-subgray"
-                    value={request}
-                    placeholder="요청사항을 입력해주세요."
-                    name="request"
-                    onChange={onChange}
-                  />
-                </div>
-              </div>
+              <FormInput
+                value={요청사항}
+                onChange={onchange}
+                title={"요청사항"}
+                textArea={true}
+                placeholder={"요청사항을 입력해주세요."}
+              />
               <div className="md:flex justify-center mt-[2rem] md:mt-16">
                 <button className="bg-blue-600 text-white w-full md:w-[27rem] h-[5.625rem] rounded-md" type="submit">
                   견적 문의하기

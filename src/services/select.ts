@@ -9,7 +9,6 @@ export const selectSlice = createSlice({
   initialState,
   reducers: {
     selectTrue: (state) => {
-      console.log(state);
       state.value = true;
     },
     selectFalse: (state) => {
