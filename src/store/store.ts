@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import initialReducer from "../services/initialItem";
+import mainReducer from "../services/mainItem";
+import setReducer from "../services/setItem";
 import selectReducer from "../services/select";
 
 export const store = configureStore({
   reducer: {
-    initial: initialReducer,
+    mainItem: mainReducer,
+    setItem: setReducer,
     select: selectReducer,
   },
 });

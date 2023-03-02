@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Designer from "./Designer";
 import Editor from "./Editor";
 import { useDispatch } from "react-redux";
@@ -17,9 +17,10 @@ function Design() {
     isOpen: false,
     message: "anjay",
   });
-  const elStage = React.useRef();
+  const elStage = useRef(null);
 
   const checkDeselect = (e: any) => {
+    //FIXME: e type은 konva의 getStage를 사용하여 type 지정의 어려움이 있음...
     // deselect when clicked on empty area
     const clickedOnEmpty = e.target === e.target.getStage();
     if (clickedOnEmpty) {

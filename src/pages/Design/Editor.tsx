@@ -5,8 +5,9 @@ import close from "../../image/close.png";
 import pallete from "../../image/pallete.png";
 import type { RootState } from "../../store/store";
 import { useDispatch, useSelector } from "react-redux";
-import { changecolor, changedesign } from "../../services/initialItem";
+import { setmaincolor, setpreview, setposition } from "../../services/mainItem";
 import { selectFalse } from "../../services/select";
+import { changesetone, changesettwo } from "../../services/setItem";
 
 interface FileType {
   stream: string;
@@ -24,11 +25,11 @@ export default function Editor({ elStage, setModal }: { elStage: any; setModal: 
   });
   const [color, setColor] = useColor("hex", "#121212");
   const [PLToggle, setPLToggle] = useState(false);
-  const initialItem = useSelector((state: RootState) => state.initial);
+  const mainItem = useSelector((state: RootState) => state.mainItem);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(changecolor(color.hex));
+    dispatch(setmaincolor(color.hex));
   }, [dispatch, color]);
 
   function _designLabel(fileName: string, labelId: string) {
@@ -91,23 +92,25 @@ export default function Editor({ elStage, setModal }: { elStage: any; setModal: 
       // 이부분 진짜 죽는줄... 무한 루프 걸려서
       //빈 객체에서 fileUpload.label과 같이 빈객체를 참고하게 되면 error가 뜨는데 error를 해결하고자 객체의 값을
       //미리 설정해 주니 if 조건문의 값이 항상 투르가 되버려 무한루프에 빠졌었음...
-      dispatch(
-        changedesign(
-          initialItem.designs.map((arg) => {
-            return arg.label === fileUpload.label
-              ? {
-                  ...arg,
-                  preview: fileUpload.stream,
-                  positions: {
-                    ...arg.positions,
-                    width: _calculate_image_size("width", fileUpload.width, fileUpload.width),
-                    height: _calculate_image_size("height", fileUpload.width, fileUpload.height),
-                  },
-                }
-              : arg;
-          })
-        )
-      );
+
+      switch (fileUpload.label) {
+        case "main_logo":
+          dispatch(setpreview(fileUpload.stream));
+          dispatch(
+            setposition({
+              ...mainItem.positions,
+              width: _calculate_image_size("width", fileUpload.width, fileUpload.width),
+              height: _calculate_image_size("height", fileUpload.width, fileUpload.height),
+            })
+          );
+          break;
+        case "setOne_logo":
+          dispatch(changesetone(fileUpload.stream));
+          break;
+        default:
+          dispatch(changesettwo(fileUpload.stream));
+          break;
+      }
 
       setFileUpload({
         stream: "",
@@ -149,8 +152,21 @@ export default function Editor({ elStage, setModal }: { elStage: any; setModal: 
     }
   }
 
-  const deleteLabel = (label: string) => {
-    dispatch(changedesign(initialItem.designs.map((arg) => (arg.label === label ? { ...arg, preview: "" } : arg))));
+  const deleteMainPreview = () => {
+    dispatch(setpreview(""));
+  };
+
+  const deleteSetLabel = (label: string) => {
+    switch (label) {
+      case "setOne_logo":
+        dispatch(changesetone(""));
+        break;
+      case "setTwo_logo":
+        dispatch(changesettwo(""));
+        break;
+      default:
+        break;
+    }
   };
 
   const colorList = [
@@ -208,7 +224,7 @@ export default function Editor({ elStage, setModal }: { elStage: any; setModal: 
                   key={i}
                   className={`w-8 h-8 bg-${color.name} cursor-pointer rounded-md m-2.5`}
                   onClick={() => {
-                    dispatch(changecolor(color.hax));
+                    dispatch(setmaincolor(color.hax));
                   }}
                 ></div>
               );
@@ -228,7 +244,7 @@ export default function Editor({ elStage, setModal }: { elStage: any; setModal: 
               <span className=" block text-gray-400" id="main_picker">
                 클릭해서 이미지를 업로드 하세요.
               </span>
-              <button className="pointer-events-auto" onClick={() => deleteLabel("main_logo")}>
+              <button className="pointer-events-auto" onClick={() => deleteMainPreview()}>
                 <img src={close} alt="close" />
               </button>
             </div>
@@ -242,7 +258,7 @@ export default function Editor({ elStage, setModal }: { elStage: any; setModal: 
               <span className=" block text-gray-400" id="setone_picker">
                 클릭해서 이미지를 업로드 하세요.
               </span>
-              <button className="pointer-events-auto" onClick={() => deleteLabel("setOne_logo")}>
+              <button className="pointer-events-auto" onClick={() => deleteSetLabel("setOne_logo")}>
                 <img src={close} alt="close" />
               </button>
             </div>
@@ -256,7 +272,7 @@ export default function Editor({ elStage, setModal }: { elStage: any; setModal: 
               <span className=" block text-gray-400" id="settwo_picker">
                 클릭해서 이미지를 업로드 하세요.
               </span>
-              <button className="pointer-events-auto" onClick={() => deleteLabel("setTwo_logo")}>
+              <button className="pointer-events-auto" onClick={() => deleteSetLabel("setTwo_logo")}>
                 <img src={close} alt="close" />
               </button>
             </div>

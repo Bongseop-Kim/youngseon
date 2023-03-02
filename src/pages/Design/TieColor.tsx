@@ -4,7 +4,8 @@ import { useSelector } from "react-redux";
 import type { RootState } from "../../store/store";
 
 export default function TieColor() {
-  const initialItem = useSelector((state: RootState) => state.initial);
+  const setItem = useSelector((state: RootState) => state.setItem);
+  const mainItem = useSelector((state: RootState) => state.mainItem);
   const setOne = [
     "matrix(0.0887 0 0 0.0887 418.2646 839.9116)",
     "matrix(0.0887 0 0 0.0887 368.88 887.8368)",
@@ -62,7 +63,7 @@ export default function TieColor() {
     <svg width={400} height={700} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 674 1466">
       <g>
         <path
-          fill={initialItem.color}
+          fill={mainItem.color}
           id="pln801AOTmask"
           d="M472.094,1248.459c-0.588-16.555-1.18-33.111-1.766-49.666
 			c-0.586-16.552-1.164-33.104-1.745-49.657c-0.583-16.609-1.163-33.219-1.743-49.828c-0.579-16.582-1.16-33.163-1.744-49.744
@@ -102,26 +103,12 @@ export default function TieColor() {
       <g id="pln" clipPath="url(#TieMask)">
         {setOne.map((arg, index) => {
           return (
-            <image
-              key={index}
-              overflow="visible"
-              width="400"
-              height="400"
-              transform={arg}
-              href={initialItem.designs[1].preview}
-            />
+            <image key={index} overflow="visible" width="400" height="400" transform={arg} href={setItem[0].preview} />
           );
         })}
         {setTwo.map((arg, index) => {
           return (
-            <image
-              key={index}
-              overflow="visible"
-              width="400"
-              height="400"
-              transform={arg}
-              href={initialItem.designs[2].preview}
-            />
+            <image key={index} overflow="visible" width="400" height="400" transform={arg} href={setItem[1].preview} />
           );
         })}
       </g>

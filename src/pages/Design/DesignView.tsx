@@ -2,7 +2,7 @@ import React from "react";
 import useImage from "use-image";
 import { Image, Transformer } from "react-konva";
 import type { RootState } from "../../store/store";
-import { dragstart, dragend, change } from "../../services/initialItem";
+import { dragstart, dragend, setposition } from "../../services/mainItem";
 import { useSelector, useDispatch } from "react-redux";
 import { selectTrue } from "../../services/select";
 
@@ -10,9 +10,9 @@ export default function DesignView() {
   const shapeRef = React.useRef<any>();
   const trRef = React.useRef<any>();
   const selected = useSelector((state: RootState) => state.select);
-  const initialItem = useSelector((state: RootState) => state.initial);
+  const mainItem = useSelector((state: RootState) => state.mainItem);
   const dispatch = useDispatch();
-  const [image] = useImage(initialItem.designs[0].preview);
+  const [image] = useImage(mainItem.preview);
 
   React.useEffect(() => {
     if (selected.value) {
@@ -29,7 +29,7 @@ export default function DesignView() {
         isSelected={selected.value}
         image={image}
         draggable
-        {...initialItem.designs[0].positions}
+        {...mainItem.positions}
         onClick={() => dispatch(selectTrue())}
         onTap={() => dispatch(selectTrue())}
         onDragStart={() => {
@@ -38,7 +38,7 @@ export default function DesignView() {
         onDragEnd={(e: any) => {
           dispatch(
             dragend({
-              ...initialItem.designs[0].positions,
+              ...mainItem.positions,
               isDragging: false,
               x: e.target.x(),
               y: e.target.y(),
@@ -49,7 +49,7 @@ export default function DesignView() {
           // transformer is changing scale of the node
           // and NOT its width or height
           // but in the store we have only width and height
-          // to match the initialItem better we will reset scale on transform end
+          // to match the mainItem better we will reset scale on transform end
           const node: any = shapeRef.current;
           const scaleX = node.scaleX();
           const scaleY = node.scaleY();
@@ -58,8 +58,8 @@ export default function DesignView() {
           node.scaleX(1);
           node.scaleY(1);
           dispatch(
-            change({
-              ...initialItem.designs[0].positions,
+            setposition({
+              ...mainItem.positions,
               x: node.x(),
               y: node.y(),
               // set minimal value
