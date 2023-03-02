@@ -15,6 +15,7 @@ const initialState: InitialItemType[] = [
     preview: "",
   },
 ];
+
 export const initialSlice = createSlice({
   name: "initialItem",
   initialState,

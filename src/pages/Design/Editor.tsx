@@ -107,8 +107,10 @@ export default function Editor({ elStage, setModal }: { elStage: any; setModal: 
         case "setOne_logo":
           dispatch(changesetone(fileUpload.stream));
           break;
-        default:
+        case "setTwo_logo":
           dispatch(changesettwo(fileUpload.stream));
+          break;
+        default:
           break;
       }
 
