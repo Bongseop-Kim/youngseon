@@ -33,9 +33,9 @@ const partners: Partner[] = [
   },
 ];
 
-const PartnerReturn = partners.map((partner: Partner) => {
+const PartnerReturn = partners.map((partner: Partner, i) => {
   return (
-    <div className="md:w-48 w-full h-32 bg-gray-50 flex items-center justify-center rounded-lg">
+    <div key={i} className="md:w-48 w-full h-32 bg-gray-50 flex items-center justify-center rounded-lg">
       <img src={partner.image} alt="postlogo" />
     </div>
   );

@@ -1,6 +1,6 @@
 import React from "react";
 import { Stage, Layer } from "react-konva";
-import TieColor from "./TieColor";
+import Tie from "./Tie";
 import DesignView from "./DesignView";
 import { Provider } from "react-redux";
 import { store } from "../../store/store";
@@ -24,7 +24,7 @@ export default function Designer({ elStage, checkDeselect }: { elStage: any; che
             </Provider>
           </Layer>
         </Stage>
-        <TieColor />
+        <Tie />
       </div>
     </div>
   );

@@ -10,14 +10,12 @@ export interface PositionType {
 
 export interface InitialItemType {
   color: string;
-  label: string;
   preview: string;
   positions: PositionType;
 }
 
 const initialState: InitialItemType = {
   color: "white",
-  label: "main_logo",
   preview: "",
   positions: {
     isDragging: false,

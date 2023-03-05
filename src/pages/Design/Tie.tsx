@@ -3,7 +3,7 @@ import tie from "../../image/tie.png";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../store/store";
 
-export default function TieColor() {
+export default function Tie() {
   const setItem = useSelector((state: RootState) => state.setItem);
   const mainItem = useSelector((state: RootState) => state.mainItem);
   const setOne = [

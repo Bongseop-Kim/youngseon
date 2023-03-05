@@ -22,7 +22,7 @@ function QuoteContact() {
   //구조분해 할당
   const { 이름, 회사명, 연락처, 이메일, accountNumber, 요청사항 } = form;
 
-  const onChange = (e: any) => {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setForm({
       ...form,
@@ -41,7 +41,7 @@ function QuoteContact() {
   const fileInput = useRef<any>(null);
   const [designFile, setDesignFile] = useState();
 
-  const imageUploadButton = (e: any) => {
+  const imageUploadButton = () => {
     fileInput.current.click();
   };
   const imageUpload = (e: any) => {
